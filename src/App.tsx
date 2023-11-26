@@ -6,7 +6,6 @@ import { Navigation } from './components/Navigation';
 import { Layout } from './components/Layout';
 
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
-console.log('GITHUB_TOKEN', GITHUB_TOKEN)
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
