@@ -14,7 +14,7 @@ export function useSearch() {
     dispatch(setIsTyping(value));
   }
 
-  const handleSetAfterCursor = (value: any) => {
+  const handleSetAfterCursor = (value: string | null) => {
     dispatch(setAfterCursor(value));
   }
 
