@@ -8,7 +8,7 @@ To do this make a copy of `.env.dist` file and name it `.env`.
 If you use *nix based systems you can run `cp .env.dist .env`.
 After it you need to put your token for the `REACT_APP_GITHUB_TOKEN` variable.
 
-If everything done correctrly then you can run the application by running `npm run start`
+If everything done correctrly then you can run `npm i` for installing all needed packages and then start the application by running `npm run start`
 
 ## Available Scripts
 
