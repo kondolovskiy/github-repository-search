@@ -16,6 +16,7 @@ export const Favorites: React.FC = () => {
     <div>
       <h2>Favorite Repositories</h2>
       <List>
+        {!Boolean(favorites?.length) && <h3>There is no reposotories in favorite yet</h3>}
         {favorites?.map((favorite: Node) => (
           <RepositoryListItem
             key={(favorite.id as Key)}
