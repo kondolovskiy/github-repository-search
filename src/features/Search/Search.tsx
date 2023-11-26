@@ -1,17 +1,14 @@
 import React, { Key } from 'react';
-import { useLazyQuery } from '@apollo/client';
 import { List, CircularProgress, Button } from '@mui/material';
 import { Star, StarBorder } from '@mui/icons-material';
-import { SEARCH_REPOSITORIES } from './schemas/searchRepository.schema';
 import { useFavorites } from '../../hooks/useFavorites';
 import { useSearch } from './hooks/useSearch';
+import { useQuery } from './hooks/useQuery';
 import { SearchInput } from './components/SearchInput';
 import { RepositoryListItem } from '../../components/RepositoryListItem';
 import { Node } from '../../types';
 
 export const Search: React.FC = () => {
-  const [getRepositories, { loading, error, data, fetchMore }] = useLazyQuery(SEARCH_REPOSITORIES);
-
   const {
     search,
   } = useSearch();
@@ -24,25 +21,13 @@ export const Search: React.FC = () => {
     handleRemoveFromFavorites,
   } = useFavorites();
 
-  const handleLoadMore = () => {
-    fetchMore({
-      variables: { query: searchQuery, after: afterCursor },
-      updateQuery: (prevResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.search.edges;
-        const pageInfo = fetchMoreResult.search.pageInfo;
-
-        return newEdges.length
-          ? {
-            search: {
-              __typename: prevResult.search.__typename,
-              edges: [...prevResult.search.edges, ...newEdges],
-              pageInfo,
-            },
-          }
-          : prevResult;
-      },
-    });
-  };
+  const {
+    data,
+    error,
+    loading,
+    getRepositories,
+    fetchMore
+  } = useQuery();
 
   if (error) return <p>Error: {error.message}</p>;
 
@@ -73,7 +58,7 @@ export const Search: React.FC = () => {
       )}
 
       {data?.search?.pageInfo?.hasNextPage && (
-        <Button variant="contained" onClick={handleLoadMore}>
+        <Button variant="contained" onClick={() => fetchMore(searchQuery, afterCursor)}>
           Load More
         </Button>
       )}
