@@ -31,12 +31,15 @@ export const Search: React.FC = () => {
 
   if (error) return <p>Error: {error.message}</p>;
 
+  const hasNoResults = Boolean(searchQuery) && !Boolean(data?.search?.edges?.length) && !isTyping
+
   return (
     <div>
       <SearchInput onSearch={(value) => getRepositories({ variables: { query: value } })}/>
 
       {(loading && !isTyping) ? <CircularProgress /> : (
         <List>
+          {hasNoResults && <h2>No results for "{searchQuery}"</h2> }
           {data?.search?.edges?.map(({ node }: { node: Node }) => (
             <RepositoryListItem 
               key={(node.id as Key)}
