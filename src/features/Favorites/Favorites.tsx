@@ -1,5 +1,5 @@
 import React, { Key } from 'react';
-import { List, ListItem, ListItemText, Link, Button, Rating } from '@mui/material';
+import { List, Button, Rating } from '@mui/material';
 import { Node } from '../../types';
 import { useFavorites } from '../../hooks/useFavorites';
 import { RepositoryListItem } from '../../components/RepositoryListItem';
