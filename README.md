@@ -1,7 +1,7 @@
 # Github repository search application
 
 ## Instalation
-You need to get your GitHub API token first. Follow this [https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens](link) to get more info how to get it.
+You need to get your GitHub API token first. Follow this [link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to get more info how to get it.
 
 When you have a token you need to create an env variable to it.
 To do this make a copy of `.env.dist` file and name it `.env`. 
