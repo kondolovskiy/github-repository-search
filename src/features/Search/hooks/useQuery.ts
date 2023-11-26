@@ -4,7 +4,7 @@ import { SEARCH_REPOSITORIES } from '../schemas/searchRepository.schema';
 export function useQuery() {
   const [getRepositories, { loading, error, data, fetchMore }] = useLazyQuery(SEARCH_REPOSITORIES);
 
-  const handleLoadMore = (searchQuery: String, afterCursor: any) => {
+  const handleLoadMore = (searchQuery: string, afterCursor: string | null) => {
     fetchMore({
       variables: { query: searchQuery, after: afterCursor },
       updateQuery: (prevResult, { fetchMoreResult }) => {

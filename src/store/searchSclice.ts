@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type State = {
+  searchQuery: string,
+  isTyping: boolean,
+  afterCursor: string | null,
+}
+
+const initialState: State = {
   searchQuery: '',
   isTyping: false,
   afterCursor: null,
@@ -16,7 +22,7 @@ const searchSlice = createSlice({
     setIsTyping: (state, action: PayloadAction<boolean>) => {
       state.isTyping = action.payload;
     },
-    setAfterCursor: (state, action: PayloadAction<any>) => {
+    setAfterCursor: (state, action: PayloadAction<string | null>) => {
       state.afterCursor = action.payload;
     }
   },

@@ -1,4 +1,4 @@
-import React, { Key } from 'react';
+import React, { Key, useEffect } from 'react';
 import { List, CircularProgress, Button } from '@mui/material';
 import { Star, StarBorder } from '@mui/icons-material';
 import { useFavorites } from '../../hooks/useFavorites';
@@ -11,6 +11,7 @@ import { Node } from '../../types';
 export const Search: React.FC = () => {
   const {
     search,
+    handleSetAfterCursor
   } = useSearch();
 
   const { searchQuery, isTyping, afterCursor } = search;
@@ -28,6 +29,12 @@ export const Search: React.FC = () => {
     getRepositories,
     fetchMore
   } = useQuery();
+
+  useEffect(() => {
+    if(data?.search?.pageInfo) {
+      handleSetAfterCursor(data?.search?.pageInfo.endCursor);
+    }
+  }, [data])
 
   if (error) return <p>Error: {error.message}</p>;
 
