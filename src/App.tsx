@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Search from './features/Search';
+import Favorites from './features/Favorites';
+import { Navigation } from './components/Navigation';
+import { Layout } from './components/Layout';
+
+const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+console.log('GITHUB_TOKEN', GITHUB_TOKEN)
+
+const client = new ApolloClient({
+  uri: 'https://api.github.com/graphql',
+  cache: new InMemoryCache(),
+  headers: {
+    Authorization: `Bearer ${GITHUB_TOKEN}`,
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <Layout>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Search />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ApolloProvider>
   );
 }
 
