@@ -50,7 +50,7 @@ export const Search: React.FC = () => {
     <div>
       <SearchInput onSearch={(value) => getRepositories({ variables: { query: value } })}/>
 
-      {(loading && isTyping) ? <CircularProgress /> : (
+      {(loading && !isTyping) ? <CircularProgress /> : (
         <List>
           {data?.search?.edges?.map(({ node }: { node: Node }) => (
             <RepositoryListItem 
