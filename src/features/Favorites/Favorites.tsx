@@ -11,7 +11,6 @@ export const Favorites: React.FC = () => {
     handleUpdateRating
   } = useFavorites()
 
-
   return (
     <div>
       <h2>Favorite Repositories</h2>
@@ -31,22 +30,6 @@ export const Favorites: React.FC = () => {
               </>
             )}
           />
-          // <ListItem key={(favorite.id as Key)}>
-          //   <ListItemText
-          //     primary={`${favorite.owner.login} / ${favorite.name}`}
-          //     secondary={favorite.description}
-          //     sx={{ width: '50%'}}
-          //   />
-          //   <ListItemText
-          //     primary={`Stars: ${favorite.stargazerCount}`}
-          //     secondary={
-          //       <Link href={favorite.url} target="_blank" rel="noopener noreferrer">
-          //         View on GitHub
-          //       </Link>
-          //     }
-          //   />
-          //   
-          // </ListItem>
         ))}
       </List>
     </div>
